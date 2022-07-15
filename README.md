@@ -2,8 +2,6 @@
 
 ![Main figure](etc/main.png)
 
-![UESTC](etc/fig/uestc_summary/high-knees-running_060.mp4)
-
 [[More Visualizations]](etc/Visualizations.md)
 
 ## Bibtex
@@ -75,3 +73,5 @@ python3 ./ImplicitMotion/test/test_metric.py
 ---
 ## License
 This code is distributed under an [MIT LICENSE](LICENSE).
+
+
