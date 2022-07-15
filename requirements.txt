@@ -1,0 +1,14 @@
+imageio==2.19.3
+joblib==1.1.0
+matplotlib==3.5.2
+numpy==1.22.3
+Pillow==9.2.0
+pyrender==0.1.45
+PyYAML==6.0
+scikit_learn==1.1.1
+scipy==1.8.1
+smplx==0.1.28
+tqdm==4.64.0
+trimesh==3.12.7
+tensorboard==2.9.1
+chumpy==0.70

@@ -1,0 +1,117 @@
+{
+  # Data path (Human, NTU13, UESTC)
+  dataset: Human,
+  
+  path_dataset: None,
+  path_results_base: None,
+
+  #### Logging settings
+  logging_opts: {
+    logging: True,
+
+    snapshot: True,
+
+    testing: False,
+
+    tensorboard: True,
+
+    checkpoint: True,
+    checkpoint_epoch: 100
+  },
+
+  #### General settings
+  seed: 1,
+  device: 0,
+  load_checkpoint: False,
+  continue_training: False,
+  path_checkpoint: None,
+  checkpoint_epoch: 10000,
+  path_smpl: None,
+  num_workers: 3,
+
+  #### Experiment settings
+  epochs: 10000,
+  batch_size: 512,
+  batch_subsampling: random, # full, fixed_length, random
+  batch_subsample_size: 5,
+
+  aggregate_per_epoch: True,
+  gradient_clipping: True, # helps when increasing kld weight
+
+  #### Dataset specific
+  split: train,
+  # split: full,
+  chunk_limit: -1,
+  approx_chunk_size: 300,
+
+  optim_alternating: true,
+  code_update_ratio: 1,
+
+  #### Loss settings (joint/vertices/rotation/combined/combined_joints)
+  recon_loss_type: combined,
+
+  #### Model/Optimizer settings
+  ## Motion model
+  model_type: mlp, # transformer, mlp
+  model_opts: {
+    motion_representation: rot_6D, # axis_angle, rot_6D
+  },
+  model_optimizer: {
+    optimizer: Adam,
+    lr: 0.001,
+    # weight_decay: 0.0001
+  },
+
+  # if motion_model_type == transformer
+  model_transformer: {
+    ff_size: 1024,
+    num_layers: 8,
+    num_heads: 4,
+    dropout: 0.1
+  },
+
+  # if motion_model_type == mlp
+  model_mlp: {
+    root_model: False,
+    root_model_layers: [200, 100, 50],
+    layers: [1000, 500, 500, 200, 100],
+    bias: True,
+    batch_norm: False,
+  },
+
+  ## Time function
+  # General time function
+  positional_embedding_type: fixed, # sinusoidal, linear, fixed
+  positional_embedding_opts: {
+    num_freq: 10000,
+    num_dims: 256, # Dimension of time representation
+    additive: False
+  },
+
+  ## Code parameters
+  sequence_code_opts: {
+    num_dims: 128,
+    logvar_scale: 1,
+    variational: True,
+    variational_weight: 0.00001,
+  },
+  sequence_code_optimizer: {
+    optimizer: Adam,
+    lr: 0.001,
+    # weight_decay: 0.0001
+  },
+
+  action_code_additive: False,
+  action_code_opts: {
+    num_dims: 128,
+    logvar_scale: 1,
+    variational: True,
+    variational_weight: 0.00001,
+    },
+  action_code_optimizer: {
+    optimizer: Adam,
+    lr: 0.001,
+    # weight_decay: 0.0001
+  },
+}
+
