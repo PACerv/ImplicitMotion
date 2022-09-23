@@ -800,9 +800,8 @@ if __name__ == "__main__":
 
     opts = parse()
     test_config = opts.__dict__
-
     eval = EvaluationMetrics(test_config)
-    eval.generate_video_compilation()
+    # eval.generate_video_compilation()
     # eval.visualize_reconstruction()
 
     if opts.metrics:
