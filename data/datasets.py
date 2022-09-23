@@ -82,6 +82,7 @@ class HumanAct12(MotionDataset):
     _UNFILTERED_FILELIST = None
 
     def __init__(self, *args, use_SMPL, device, path_smpl=None, **kwargs):
+        
         self.use_SMPL = use_SMPL
         if self.use_SMPL:
             self.SMPL_data = joblib.load(args[0].joinpath('HumanAct12Poses').joinpath("humanact12poses.pkl"))
@@ -122,7 +123,10 @@ class HumanAct12(MotionDataset):
 
     @classmethod
     def get_full_filelist(cls, path):
+        if cls._UNFILTERED_FILELIST is not None:
+            return cls._UNFILTERED_FILELIST
         filelist = [f.stem for f in path.iterdir() if f.suffix == ".npy"]
+        filelist.remove('P05G02R01F1886T1941A0901')
         filelist.sort()
         cls._UNFILTERED_FILELIST = filelist
         return filelist
